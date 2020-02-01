@@ -54,7 +54,7 @@ SherLaravel::trackEvent(String $user_id, String $event, ?int $timestamp = null)
 
 ##Sample:
 ```php
-public function identifyUser("1234", "Customer44", [
+SherLaravel::identifyUser("1234", "Customer44", [
         'name' => 'John Doe',
         'email' => 'johndoe@example.com']
     , '1553647710707')
