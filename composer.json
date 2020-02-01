@@ -1,0 +1,43 @@
+{
+    "name": "iugosds/sherlaravel",
+    "description": "Sherlock Score integration for Laravel projects",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gonzalo Medeiros",
+            "email": "gmedeiros@iugo.com.uy",
+            "homepage": "https://iugo.com.uy"
+        }
+    ],
+    "homepage": "https://github.com/iugosds/sherlaravel",
+    "keywords": ["Laravel", "SherLaravel"],
+    "require": {
+        "illuminate/support": "~5|~6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3|~4",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "IUGOsds\\SherLaravel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "IUGOsds\\SherLaravel\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "IUGOsds\\SherLaravel\\SherLaravelServiceProvider"
+            ],
+            "aliases": {
+                "SherLaravel": "IUGOsds\\SherLaravel\\Facades\\SherLaravel"
+            }
+        }
+    }
+}
