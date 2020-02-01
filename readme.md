@@ -24,6 +24,8 @@ SHERLOCK_SCORE_API_KEY=a12b34c56...
 
 You can also disable this package by adding a SHERLOCK_SCORE_ENABLED key set to false (true by default).
 
+In case you don't want to wait for the API to respond, you can run all interactions with Sherlock Scores as asynchronous calls (jobs will be dispatched to the "default" queue of your laravel application). To enable this feature, set the SHERLOCK_ASYNC_CALLS variable to true in your .env file.
+
 To start interacting with Sherlock Score, use the following methods:
 
 ```php

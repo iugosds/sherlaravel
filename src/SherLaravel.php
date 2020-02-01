@@ -22,7 +22,14 @@ class SherLaravel
             'timestamp' => $timestamp ?? \Carbon\Carbon::now()->timestamp
         ];
         if (config('sherlaravel.enabled')) {
-            return $this->sherlockAPI('groups', $params);
+            if (config('sherlaravel.async_calls')) {
+                dispatch(function () use ($params) {
+                    return $this->sherlockAPI('groups', $params);
+                });
+                return (object)['status' => 'Sherlock Score call is being sent in the background.'];
+            } else {
+                return $this->sherlockAPI('groups', $params);
+            }
         } else {
             return (object)['status' => 'Sherlock Score tracking is disabled by config.'];
         }
@@ -46,7 +53,14 @@ class SherLaravel
             'timestamp' => $timestamp ?? \Carbon\Carbon::now()->timestamp
         ];
         if (config('sherlaravel.enabled')) {
-            return $this->sherlockAPI('users', $params);
+            if (config('sherlaravel.async_calls')) {
+                dispatch(function () use ($params) {
+                    $this->sherlockAPI('users', $params);
+                });
+                return (object)['status' => 'Sherlock Score call is being sent in the background.'];
+            } else {
+                return $this->sherlockAPI('users', $params);
+            }
         } else {
             return (object)['status' => 'Sherlock Score tracking is disabled by config.'];
         }
@@ -68,7 +82,14 @@ class SherLaravel
             'timestamp' => $timestamp ?? \Carbon\Carbon::now()->timestamp
         ];
         if (config('sherlaravel.enabled')) {
-            return $this->sherlockAPI('events', $params);
+            if (config('sherlaravel.async_calls')) {
+                dispatch(function () use ($params) {
+                    return $this->sherlockAPI('events', $params);
+                });
+                return (object)['status' => 'Sherlock Score call is being sent in the background.'];
+            } else {
+                return $this->sherlockAPI('events', $params);
+            }
         } else {
             return (object)['status' => 'Sherlock Score tracking is disabled by config.'];
         }
