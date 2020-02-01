@@ -23,7 +23,11 @@ class SherLaravel
             'traits' => $traits,
             'timestamp' => $timestamp ?? \Carbon\Carbon::now()->timestamp
         ];
-        return $this->sherlockAPI('users', $params);
+        if (config('sherlaravel.enabled')) {
+            return $this->sherlockAPI('users', $params);
+        } else {
+            return (object)['status' => 'Sherlock Score tracking is disabled by config.'];
+        }
     }
 
     /**
@@ -41,7 +45,11 @@ class SherLaravel
             'traits' => $traits,
             'timestamp' => $timestamp ?? \Carbon\Carbon::now()->timestamp
         ];
-        return $this->sherlockAPI('groups', $params);
+        if (config('sherlaravel.enabled')) {
+            return $this->sherlockAPI('groups', $params);
+        } else {
+            return (object)['status' => 'Sherlock Score tracking is disabled by config.'];
+        }
     }
 
     /**
@@ -59,7 +67,11 @@ class SherLaravel
             'event' => $event,
             'timestamp' => $timestamp ?? \Carbon\Carbon::now()->timestamp
         ];
-        return $this->sherlockAPI('events', $params);
+        if (config('sherlaravel.enabled')) {
+            return $this->sherlockAPI('events', $params);
+        } else {
+            return (object)['status' => 'Sherlock Score tracking is disabled by config.'];
+        }
     }
 
     /**
