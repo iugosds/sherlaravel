@@ -1,4 +1,4 @@
-# SherLaravel: a Sherlock Score integration for laravel
+# SherLaravel: a Sherlock Score integration for Laravel
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
@@ -38,23 +38,26 @@ With Sherlock you can keep track of Accounts (or groups of users). To identfy a 
 ```php
 SherLaravel::identifyUser("userIdHere");
 ```
-The identifyUser method is used to identify a new User. It will be tipically added to the register method on your login controller, or in the "created" event of your User Model in case you are using Observers.
+The identifyUser method is used to identify a new User. It will be tipically added to the register method on your login controller, or to the "created" event of your User Model in case you are using Observers.
 
 ```php
 SherLaravel::trackEvent("userID", "event-name");
 ```
-On your controllers, use the trackEvent method every time you want to track an interaction with a user.
+In your controllers, use the trackEvent method every time you want to track an interaction with a user.
 
 
 ```php
-public function identifyAccount(String $group_id, ?Array $traits= [], ?int $timestamp = null)
-public function identifyUser(String $user_id, ?String $group_id = null, ?Array $traits= [], ?int $timestamp = null)
-public function trackEvent(String $user_id, String $event, ?int $timestamp = null)
+SherLaravel::identifyAccount(String $group_id, ?Array $traits= [], ?int $timestamp = null)
+SherLaravel::identifyUser(String $user_id, ?String $group_id = null, ?Array $traits= [], ?int $timestamp = null)
+SherLaravel::trackEvent(String $user_id, String $event, ?int $timestamp = null)
 ```
 
-###Sample:
+##Sample:
 ```php
-public function identifyUser("1234", "Customer44", ['name' => 'John Doe', 'email' => 'johndoe@example.com'], '1553647710707')
+public function identifyUser("1234", "Customer44", [
+        'name' => 'John Doe',
+        'email' => 'johndoe@example.com']
+    , '1553647710707')
 ```
 
 ## Change log
