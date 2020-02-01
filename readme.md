@@ -1,10 +1,9 @@
-# SherLaravel
+# SherLaravel: a Sherlock Score integration for laravel
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]w
-[![Build Status][ico-travis]][link-travis]
+[![Total Downloads][ico-downloads]][link-downloads]
 
-Sherlock Score integration for Laravel.
+[Sherlock Score](https://www.sherlockscore.com/ "Sherlock Score's Homepage") integration for Laravel.
 
 Track your users, trials, and paid accounts with Sherlock’s Product Engagement Scoring engine.
 
@@ -12,14 +11,14 @@ Track your users, trials, and paid accounts with Sherlock’s Product Engagement
 
 Via Composer
 
-``` bash
+```php
 $ composer require iugosds/sherlaravel
 ```
 
 ## Usage
 
 First of all, add a SHERLOCK_SCORE_API_KEY key to your .env file:
-```
+```php
 SHERLOCK_SCORE_API_KEY=a12b34c56...
 ```
 
@@ -27,30 +26,35 @@ You can also disable this package by adding a SHERLOCK_SCORE_ENABLED key set to 
 
 To start interacting with Sherlock Score, use the following methods:
 
-```
+```php
 use SherLaravel;
 ```
 
-```
+```php
 SherLaravel::identifyAccount("groupIdHere");
 ```
 With Sherlock you can keep track of Accounts (or groups of users). To identfy a new account, add the line above to your controller.
 
-```
+```php
 SherLaravel::identifyUser("userIdHere");
 ```
 The identifyUser method is used to identify a new User. It will be tipically added to the register method on your login controller, or in the "created" event of your User Model in case you are using Observers.
 
-```
+```php
 SherLaravel::trackEvent("userID", "event-name");
 ```
 On your controllers, use the trackEvent method every time you want to track an interaction with a user.
 
 
-```
+```php
 public function identifyAccount(String $group_id, ?Array $traits= [], ?int $timestamp = null)
 public function identifyUser(String $user_id, ?String $group_id = null, ?Array $traits= [], ?int $timestamp = null)
 public function trackEvent(String $user_id, String $event, ?int $timestamp = null)
+```
+
+###Sample:
+```php
+public function identifyUser("1234", "Customer44", ['name' => 'John Doe', 'email' => 'johndoe@example.com'], '1553647710707')
 ```
 
 ## Change log
