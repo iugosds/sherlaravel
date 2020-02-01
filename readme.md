@@ -18,14 +18,39 @@ $ composer require iugosds/sherlaravel
 
 ## Usage
 
+First of all, add a SHERLOCK_SCORE_API_KEY key to your .env file:
+```
+SHERLOCK_SCORE_API_KEY=a12b34c56...
+```
+
+You can also disable this package by adding a SHERLOCK_SCORE_ENABLED key set to false (true by default).
+
+To start interacting with Sherlock Score, use the following methods:
+
 ```
 use SherLaravel;
 ```
 
 ```
 SherLaravel::identifyAccount("groupIdHere");
+```
+With Sherlock you can keep track of Accounts (or groups of users). To identfy a new account, add the line above to your controller.
+
+```
 SherLaravel::identifyUser("userIdHere");
+```
+The identifyUser method is used to identify a new User. It will be tipically added to the register method on your login controller, or in the "created" event of your User Model in case you are using Observers.
+
+```
 SherLaravel::trackEvent("userID", "event-name");
+```
+On your controllers, use the trackEvent method every time you want to track an interaction with a user.
+
+
+```
+public function identifyAccount(String $group_id, ?Array $traits= [], ?int $timestamp = null)
+public function identifyUser(String $user_id, ?String $group_id = null, ?Array $traits= [], ?int $timestamp = null)
+public function trackEvent(String $user_id, String $event, ?int $timestamp = null)
 ```
 
 ## Change log

@@ -7,6 +7,28 @@ class SherLaravel
     public $status;
 
     /**
+     * Identify an account
+     * @param string $group_id
+     * @param array $traits
+     * @param int $timestamp
+     *
+     * @return boolean
+     */
+    public function identifyAccount(String $group_id, ?Array $traits= [], ?int $timestamp = null)
+    {
+        $params = [
+            'group_id' => $group_id,
+            'traits' => $traits,
+            'timestamp' => $timestamp ?? \Carbon\Carbon::now()->timestamp
+        ];
+        if (config('sherlaravel.enabled')) {
+            return $this->sherlockAPI('groups', $params);
+        } else {
+            return (object)['status' => 'Sherlock Score tracking is disabled by config.'];
+        }
+    }
+
+    /**
      * Identify a user
      * @param string $user_id
      * @param string $group_id
@@ -25,28 +47,6 @@ class SherLaravel
         ];
         if (config('sherlaravel.enabled')) {
             return $this->sherlockAPI('users', $params);
-        } else {
-            return (object)['status' => 'Sherlock Score tracking is disabled by config.'];
-        }
-    }
-
-    /**
-     * Identify an account
-     * @param string $group_id
-     * @param array $traits
-     * @param int $timestamp
-     *
-     * @return boolean
-     */
-    public function identifyAccount(String $group_id, ?Array $traits= [], ?int $timestamp = null)
-    {
-        $params = [
-            'group_id' => $group_id,
-            'traits' => $traits,
-            'timestamp' => $timestamp ?? \Carbon\Carbon::now()->timestamp
-        ];
-        if (config('sherlaravel.enabled')) {
-            return $this->sherlockAPI('groups', $params);
         } else {
             return (object)['status' => 'Sherlock Score tracking is disabled by config.'];
         }
