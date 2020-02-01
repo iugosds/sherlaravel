@@ -1,11 +1,12 @@
 # SherLaravel
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
+[![Total Downloads][ico-downloads]][link-downloads]w
 [![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+Sherlock Score integration for Laravel.
+
+Track your users, trials, and paid accounts with Sherlock’s Product Engagement Scoring engine.
 
 ## Installation
 
@@ -17,23 +18,23 @@ $ composer require iugosds/sherlaravel
 
 ## Usage
 
+```
+use SherLaravel;
+```
+
+```
+SherLaravel::identifyAccount("groupIdHere");
+SherLaravel::identifyUser("userIdHere");
+SherLaravel::trackEvent("userID", "event-name");
+```
+
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
 
-## Testing
-
-``` bash
-$ composer test
-```
-
 ## Contributing
 
 Please see [contributing.md](contributing.md) for details and a todolist.
-
-## Security
-
-If you discover any security related issues, please email gmedeiros@iugo.com.uy instead of using the issue tracker.
 
 ## Credits
 
