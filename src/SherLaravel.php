@@ -19,7 +19,7 @@ class SherLaravel
         $params = [
             'group_id' => $group_id,
             'traits' => $traits,
-            'timestamp' => $timestamp ?? \Carbon\Carbon::now()->timestamp
+            'timestamp' => $timestamp ?? \Carbon\Carbon::now()->getPreciseTimestamp(3)
         ];
         if (config('sherlaravel.enabled')) {
             if (config('sherlaravel.async_calls')) {
@@ -50,7 +50,7 @@ class SherLaravel
             'user_id' => $user_id,
             'group_id' => $group_id,
             'traits' => $traits,
-            'timestamp' => $timestamp ?? \Carbon\Carbon::now()->timestamp
+            'timestamp' => $timestamp ?? \Carbon\Carbon::now()->getPreciseTimestamp(3)
         ];
         if (config('sherlaravel.enabled')) {
             if (config('sherlaravel.async_calls')) {
@@ -79,7 +79,7 @@ class SherLaravel
         $params = [
             'user_id' => $user_id,
             'event' => $event,
-            'timestamp' => $timestamp ?? \Carbon\Carbon::now()->timestamp
+            'timestamp' => $timestamp ?? \Carbon\Carbon::now()->getPreciseTimestamp(3)
         ];
         if (config('sherlaravel.enabled')) {
             if (config('sherlaravel.async_calls')) {
